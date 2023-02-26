@@ -4,11 +4,12 @@ import {
   FormAddContacts,
   ErrorText,
 } from './ContactForm.styled';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from '../../redux/contactsSlice';
-import { getContacts } from '../../redux/selectors';
+import { addContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/selectors';
 
 const FormError = ({ name }) => {
   return (
@@ -21,16 +22,20 @@ const FormError = ({ name }) => {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const listContacts = useSelector(getContacts);
+  const listContacts = useSelector(selectContacts);
 
-  const submitForm = (values, { resetForm }) => {
-    if (listContacts.some(item => item.name === values.name)) {
+  const submitForm = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const value = event.target.element.value;
+
+    if (listContacts.some(item => item.name === value.name)) {
       alert('This contact has already been added.');
       return;
     }
-
-    dispatch(addContacts(values));
-    resetForm();
+    
+    dispatch(addContact(value));
+    form.reset();
   };
 
   const nameInputId = nanoid();
