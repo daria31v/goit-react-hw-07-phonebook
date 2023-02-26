@@ -9,7 +9,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-console.log('HELLO');
+// console.log('HELLO');
 const contactSlice = createSlice({
   name: 'contacts',
   initialState: {
