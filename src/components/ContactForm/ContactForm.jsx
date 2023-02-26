@@ -23,21 +23,30 @@ const FormError = ({ name }) => {
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const listContacts = useSelector(selectContacts);
-
-  const submitForm = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const value = event.target.element.value;
-
-    if (listContacts.some(item => item.name === value.name)) {
-      alert('This contact has already been added.');
-      return;
-    }
+  console.log(listContacts)
+  // const submitForm = (event) => {
+    // event.preventDefault();
+    // const form = event.target.elements.text.value;
+    // console.log(form)
+    // if (listContacts.some(item => item.name === value.name)) {
+    //   alert('This contact has already been added.');
+    //   return;
+    // }
     
-    dispatch(addContact(value));
-    form.reset();
-  };
+  //   dispatch(addContact(event.target.elements.text.value));
+  //   form.reset();
+  // };
 
+  const submitForm =  (values, { resetForm }) => {
+    console.log(values)
+    // if (listContacts.some(item => item.name === values.name)) {
+    //   alert('This contact has already been added.');
+    //   return;
+    // }
+
+    dispatch(addContact(values));
+    resetForm();
+  };
   const nameInputId = nanoid();
   const telInputId = nanoid();
 

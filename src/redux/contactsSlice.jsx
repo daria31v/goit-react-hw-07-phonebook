@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
 import { fetchAllContacts, addContact, deleteContact } from './operations';
 
 const handlePending = state => {
@@ -35,9 +34,8 @@ const contactSlice = createSlice({
     [addContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      // state.items.push(action.payload);
-      const contact = { ...action.payload, id: nanoid() };
-      state.push(contact);
+      state.items.push(action.payload);
+ 
     },
     [deleteContact.fulfilled](state, action) {
       state.isLoading = false;
