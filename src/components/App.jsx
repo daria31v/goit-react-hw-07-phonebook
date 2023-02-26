@@ -17,6 +17,7 @@ const error = useSelector(selectError);
 
 useEffect(()=>{
   dispatch(fetchAllContacts());
+  
 }, [dispatch]);
 
 
