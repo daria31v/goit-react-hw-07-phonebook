@@ -35,7 +35,7 @@ const contactSlice = createSlice({
       console.log(action)
       state.isLoading = false;
       state.error = null;
-      state.items.push(action.payload.items);
+      state.items.push(action.payload);
  
     },
     [deleteContact.fulfilled](state, action) {

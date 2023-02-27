@@ -30,15 +30,14 @@ export const ContactForm = () => {
   console.log(listContacts)
  
   const submitForm =  (values, { resetForm }) => {
-
-
-    if (listContacts.some(item => item.name === values.name)) {
+    console.log(values)
+    // if (listContacts.filter(item => item.name === values.name)) {
     // notifyContactExist();
    
     dispatch(addContact(values));
     resetForm();  
     
-  };
+  // };
 }
   const nameInputId = nanoid();
   const telInputId = nanoid();

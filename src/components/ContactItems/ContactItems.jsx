@@ -3,16 +3,20 @@ import { DeleteBtn, Item } from './ContactItems.styled';
 import { deleteContact } from 'redux/operations';
 import { useDispatch } from 'react-redux';
 
-export const ContactItems = ({items: {name, phone, id}}) => {
-  console.log(name)
+export const ContactItems = ({item}) => {
+  console.log(item)
   const dispatch = useDispatch();
 
-  const handleDelete = () => dispatch(deleteContact(id));
+  const handleDelete = () => dispatch(deleteContact(item.id));
 
   return (
     <div>
+      
       <Item>
-         {name}:{phone}
+         {item.name}:
+      </Item>
+      <Item>
+         {item.phone}
       </Item>
       <DeleteBtn onClick={handleDelete}>Delete</DeleteBtn>
     </div>

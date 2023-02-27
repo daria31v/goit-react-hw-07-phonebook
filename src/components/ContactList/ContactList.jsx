@@ -11,16 +11,18 @@ export const ContactList = () => {
   
   return (
     <>
-    {contacts.length > 0 && (
+    {/* {contacts.length > 0 && ( */}
     <List>
+      <div>
       {contacts.map(contact => (
         <Contact key={contact.id}> 
           <GiRotaryPhone />
-          <ContactItems items={contact} />
+          <ContactItems item={contact} />
         </Contact>
       ))}
+      </div>
     </List>
-    )}
+    {/* )} */}
     </>
   );
 };
