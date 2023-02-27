@@ -15,8 +15,7 @@ export const Filter = () => {
       <Input
         type="text"
         value={value}
-        onChange={e => {
-          dispatch(setFilter(e.target.value));
+        onChange={e => {dispatch(setFilter(e.currentTarget.value.toLowerCase()));
         }}
         id={idInput}
       ></Input>

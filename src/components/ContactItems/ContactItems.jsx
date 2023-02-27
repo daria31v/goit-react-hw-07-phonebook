@@ -3,24 +3,24 @@ import { DeleteBtn, Item } from './ContactItems.styled';
 import { deleteContact } from 'redux/operations';
 import { useDispatch } from 'react-redux';
 
-export const ContactItems = ({ item: { name, phone, id} }) => {
-  
+export const ContactItems = ({items: {name, phone, id}}) => {
+  console.log(name)
   const dispatch = useDispatch();
 
   const handleDelete = () => dispatch(deleteContact(id));
 
   return (
-    <>
+    <div>
       <Item>
-        {name}:{phone}
+         {name}:{phone}
       </Item>
       <DeleteBtn onClick={handleDelete}>Delete</DeleteBtn>
-    </>
+    </div>
   );
 };
 
 ContactItems.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
-  phone: PropTypes.number.isRequired,
+  phone: PropTypes.string
 }.isRequired;

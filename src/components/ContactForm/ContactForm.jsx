@@ -4,12 +4,14 @@ import {
   FormAddContacts,
   ErrorText,
 } from './ContactForm.styled';
+// import {toast} from 'react-hot-toast'
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/operations';
 import { selectContacts } from '../../redux/selectors';
+
 
 const FormError = ({ name }) => {
   return (
@@ -20,48 +22,34 @@ const FormError = ({ name }) => {
   );
 };
 
+// const notifyContactExist = ()=> toast ('This contact has already been added.')
+
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const listContacts = useSelector(selectContacts);
   console.log(listContacts)
-  // const submitForm = (event) => {
-    // event.preventDefault();
-    // const form = event.target.elements.text.value;
-    // console.log(form)
-    // if (listContacts.some(item => item.name === value.name)) {
-    //   alert('This contact has already been added.');
-    //   return;
-    // }
-    
-  //   dispatch(addContact(event.target.elements.text.value));
-  //   form.reset();
-  // };
-
+ 
   const submitForm =  (values, { resetForm }) => {
-    console.log(values)
-    // if (listContacts.some(item => item.name === values.name)) {
-    //   alert('This contact has already been added.');
-    //   return;
-    // }
 
+
+    if (listContacts.some(item => item.name === values.name)) {
+    // notifyContactExist();
+   
     dispatch(addContact(values));
-    resetForm();
+    resetForm();  
+    
   };
+}
   const nameInputId = nanoid();
   const telInputId = nanoid();
 
   return (
     <Formik
-      // initialValues={{
-      //   items: [
-      // {
-      //   name: '',
-      //   phone: '',
-      // }] 
-        
-      // }}
-      onSubmit={submitForm}
-    >
+    initialValues={{
+      name: '',
+      phone: '',
+    }}
+      onSubmit={submitForm}>
       <Form>
         <FormAddContacts>
           <Label htmlFor={nameInputId}>
@@ -97,4 +85,4 @@ export const ContactForm = () => {
       </Form>
     </Formik>
   );
-};
+}
