@@ -4,7 +4,7 @@ import {
   FormAddContacts,
   ErrorText,
 } from './ContactForm.styled';
-// import {toast} from 'react-hot-toast'
+import {toast} from 'react-hot-toast'
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { nanoid } from 'nanoid';
@@ -22,18 +22,20 @@ const FormError = ({ name }) => {
   );
 };
 
-// const notifyContactExist = ()=> toast ('This contact has already been added.')
+const notifyContactExist = ()=> toast ('This contact has already been added.')
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const listContacts = useSelector(selectContacts);
-  console.log(listContacts)
+  // console.log(listContacts)
  
   const submitForm =  (values, { resetForm }) => {
     console.log(values)
-    // if (listContacts.filter(item => item.name === values.name)) {
-    // notifyContactExist();
-   
+
+    if (listContacts.some(item => item.name === values.name)) {
+    notifyContactExist();
+    }
+
     dispatch(addContact(values));
     resetForm();  
     

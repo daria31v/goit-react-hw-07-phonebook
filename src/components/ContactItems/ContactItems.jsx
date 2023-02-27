@@ -4,7 +4,7 @@ import { deleteContact } from 'redux/operations';
 import { useDispatch } from 'react-redux';
 
 export const ContactItems = ({item}) => {
-  console.log(item)
+  // console.log(item)
   const dispatch = useDispatch();
 
   const handleDelete = () => dispatch(deleteContact(item.id));

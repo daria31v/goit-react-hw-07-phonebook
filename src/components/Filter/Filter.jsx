@@ -9,14 +9,21 @@ export const Filter = () => {
   const value = useSelector(selectValueFilter);
   const idInput = nanoid();
 
+  const changeFilter = e => {
+    const value = e.currentTarget.value.toLowerCase();
+    dispatch(setFilter(value));
+  };
+
+
+
+
   return (
     <>
       <Label htmlFor="idInput">Find contacts by name</Label>
       <Input
         type="text"
         value={value}
-        onChange={e => {dispatch(setFilter(e.currentTarget.value.toLowerCase()));
-        }}
+        onChange={changeFilter}
         id={idInput}
       ></Input>
     </>
