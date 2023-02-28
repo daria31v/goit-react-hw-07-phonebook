@@ -1,3 +1,5 @@
+React hw-07-phonebook
+
 # React homework template
 
 Этот проект был создан при помощи
