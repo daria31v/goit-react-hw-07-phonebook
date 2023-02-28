@@ -21,10 +21,10 @@ export const App = () => {
       <h1>Phonebook</h1>
       <ContactForm />
       <h2>Contacts</h2>
-      {/* <p>{items.length > 0 && JSON.stringify(items, null, 2)}</p> */}
       <Filter />
-      {isLoading && !error && <h3>Please waite the request in progress...</h3>}
-      <ContactList />
+      {isLoading && !error && <h3>Please waite the request in progress...🐌</h3>}
+      {error && !isLoading && <h3>Something went wrong... ♫ ♫ ♫ Try later ♫ ♫ ♫</h3>}
+       <ContactList />
     </Box>
   );
 };

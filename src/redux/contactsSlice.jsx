@@ -31,15 +31,12 @@ const contactSlice = createSlice({
       state.items = action.payload;
     },
     [addContact.fulfilled](state, action) {
-      console.log(action)
       state.isLoading = false;
       state.error = null;
       state.items.push(action.payload);
  
     },
     [deleteContact.fulfilled](state, action) {
-      console.log(action)
-      console.log(action)
       state.isLoading = false;
       state.error = null;
       state.items = state.items.filter(

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const List = styled.ul`
   list-style: none;
   width: 450px;
+  margin-top: 20px;
+  background-color: white;
 `;
 export const Contact = styled.li`
   display: flex;

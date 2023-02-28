@@ -1,30 +1,34 @@
 import PropTypes from 'prop-types';
-import { DeleteBtn, Item } from './ContactItems.styled';
+import { DeleteBtn, Item, WrapItem, Wrap } from './ContactItems.styled';
 import { deleteContact } from 'redux/operations';
 import { useDispatch } from 'react-redux';
+import { GiRotaryPhone } from 'react-icons/gi';
 
-export const ContactItems = ({item}) => {
-  // console.log(item)
+export const ContactItems = ({ item }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => dispatch(deleteContact(item.id));
 
   return (
-    <div>
-      
-      <Item>
-         {item.name}:
-      </Item>
-      <Item>
-         {item.phone}
-      </Item>
-      <DeleteBtn onClick={handleDelete}>Delete</DeleteBtn>
-    </div>
+    <Wrap>
+      <GiRotaryPhone />
+      <WrapItem>
+        <Item>{item.name}:</Item>
+        <Item>{item.phone}</Item>
+      </WrapItem>
+      <div>
+        <DeleteBtn onClick={handleDelete}>Delete</DeleteBtn>
+      </div>
+    </Wrap>
   );
 };
 
 ContactItems.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  phone: PropTypes.string
+  item: PropTypes.objectOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ),
 }.isRequired;

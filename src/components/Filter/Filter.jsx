@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { setFilter } from '../../redux/filterSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectValueFilter } from '../../redux/selectors';
+import PropTypes from 'prop-types';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -13,9 +14,6 @@ export const Filter = () => {
     const value = e.currentTarget.value.toLowerCase();
     dispatch(setFilter(value));
   };
-
-
-
 
   return (
     <>
@@ -29,3 +27,7 @@ export const Filter = () => {
     </>
   );
 };
+
+Filter.propTypes = {
+  value: PropTypes.string
+}.isRequired

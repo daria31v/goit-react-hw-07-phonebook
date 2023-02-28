@@ -7,7 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(31deg, #837272, #f4bc05);
+  background-image: url('https://img.freepik.com/free-vector/digital-white-background-with-binary-code-numbers_1017-25335.jpg?w=1060&t=st=1677540072~exp=1677540672~hmac=da38ce6b08601c28930009730419ae1ca4366b4460c127b6302429d7fa8c7921');
   background-size: cover;
 }
 

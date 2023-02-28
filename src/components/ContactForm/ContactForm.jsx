@@ -4,14 +4,12 @@ import {
   FormAddContacts,
   ErrorText,
 } from './ContactForm.styled';
-import {toast} from 'react-hot-toast'
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/operations';
 import { selectContacts } from '../../redux/selectors';
-
 
 const FormError = ({ name }) => {
   return (
@@ -22,35 +20,34 @@ const FormError = ({ name }) => {
   );
 };
 
-const notifyContactExist = ()=> toast ('This contact has already been added.')
-
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const listContacts = useSelector(selectContacts);
-  // console.log(listContacts)
- 
-  const submitForm =  (values, { resetForm }) => {
-    console.log(values)
 
+  const submitForm = (values, { resetForm }) => {
+    
     if (listContacts.some(item => item.name === values.name)) {
-    notifyContactExist();
+      alert(`Contact <${values.name}> has already been added ⛔`)
+      return
     }
 
     dispatch(addContact(values));
-    resetForm();  
-    
-  // };
-}
+    alert(`Contact <${values.name}> was add ✅`)
+    resetForm();
+
+    // };
+  };
   const nameInputId = nanoid();
   const telInputId = nanoid();
 
   return (
     <Formik
-    initialValues={{
-      name: '',
-      phone: '',
-    }}
-      onSubmit={submitForm}>
+      initialValues={{
+        name: '',
+        phone: '',
+      }}
+      onSubmit={submitForm}
+    >
       <Form>
         <FormAddContacts>
           <Label htmlFor={nameInputId}>
@@ -83,7 +80,8 @@ export const ContactForm = () => {
         </FormAddContacts>
 
         <AddContactBtn type="submit">Add contacts</AddContactBtn>
+        
       </Form>
     </Formik>
   );
-}
+};
